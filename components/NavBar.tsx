@@ -9,10 +9,11 @@ export default function Navbar() {
     { name: "About", num: "01" },
     { name: "Expertise", num: "02" },
     { name: "Work", num: "03" },
-    { name: "Contact", num: "import 04" },
+    { name: "Contact", num: " 04" },
   ];
 
   return (
+    // Main Navbar Container with animation
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
