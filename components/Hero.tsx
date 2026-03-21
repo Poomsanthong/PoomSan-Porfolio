@@ -53,7 +53,7 @@ export default function Hero() {
           <div className="w-12 h-[1px] bg-orange-500" />
 
           <span className="font-mono text-xs md:text-sm tracking-[0.3em] text-orange-400 font-medium uppercase">
-            Frontend Developer
+            Frontend Developer / Frontend Engineer
           </span>
 
           <div className="w-12 h-[1px] bg-orange-500" />
@@ -84,8 +84,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1 }}
           className="mt-8 sm:mt-12 text-zinc-400 max-w-2xl text-sm md:text-base lg:text-lg font-light tracking-wide leading-relaxed px-4 mx-auto"
         >
-          FRONTEND DEVELOPER FOCUSED ON MODERN WEB TECHNOLOGIES. TURNING DESIGN
-          INTO FAST, INTERACTIVE, AND RESPONSIVE EXPERIENCES.
+          FRONTEND. DESIGN. PERFORMANCE. BUILT WITH MODERN WEB TECHNOLOGIES.
         </motion.p>
       </div>
       {/* Scroll indicator */}

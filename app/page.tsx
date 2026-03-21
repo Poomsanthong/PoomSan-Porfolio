@@ -7,7 +7,7 @@ export default function Page() {
     <main className="bg-neutral-950 text-white min-h-screen selection:bg-orange-500 selection:text-black font-sans scroll-smooth w-full overflow-x-hidden">
       <Navbar />
       <Hero />
-      {/* <About /> */}
+      <About />
     </main>
   );
 }
