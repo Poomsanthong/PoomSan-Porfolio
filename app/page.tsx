@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import Expertise from "@/components/Expertise";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/NavBar";
 
@@ -8,6 +9,7 @@ export default function Page() {
       <Navbar />
       <Hero />
       <About />
+      <Expertise />
     </main>
   );
 }
