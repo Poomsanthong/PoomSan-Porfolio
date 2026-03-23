@@ -22,7 +22,7 @@ export default function Navbar() {
     >
       <div className="flex items-center gap-2 font-mono text-sm tracking-widest uppercase">
         <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-        <img src="images/Poom_logo.png" alt="Poom Logo" className="w-30" />
+        <img src="images/Poom_Logo.png" alt="Poom Logo" className="w-30" />
       </div>
 
       {/* Desktop Links */}
