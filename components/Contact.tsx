@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Linkedin, Github } from "lucide-react";
 
 const contactLinks = [
   {
     label: "Email",
     value: "thanapoom.santhong10@gmail.com",
     href: "#contact",
+
     icon: Mail,
   },
   {
@@ -22,7 +23,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative min-h-screen overflow-hidden bg-neutral-950 px-8 py-32 text-white md:px-16"
+      className="relative pt-32 pb-16 px-8 md:px-16 bg-[#020202] text-white min-h-[90vh] flex flex-col justify-between overflow-hidden"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_30%)]" />
 
@@ -95,6 +96,53 @@ export default function Contact() {
             </div>
           </div>
         </motion.div>
+      </div>
+
+      {/* Footer Details */}
+      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center gap-8 mt-32 border-t border-zinc-900 pt-8 relative z-10">
+        <div className="flex items-center gap-8">
+          {[
+            {
+              icon: <Github size={20} />,
+              label: "GitHub",
+              href: "https://github.com/Poomsanthong/",
+            },
+            {
+              icon: <Linkedin size={20} />,
+              label: "LinkedIn",
+              href: "www.linkedin.com/in/thanapoom-santhong",
+            },
+            {
+              icon: <Mail size={20} />,
+              label: "Email",
+              href: "https://mail.google.com/mail/?view=cm&to=thanapoom.santhong10@gmail.com&su=Frontend%20Project%20Inquiry&body=Hi%20Poom,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20frontend%20project.%20Please%20let%20me%20know%20when%20you%20are%20available.%0D%0A%0D%0AThanks!",
+            },
+          ].map((social, i) => (
+            <motion.a
+              key={i}
+              href={social.href}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5, color: "#f97316" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: i * 0.1 }}
+              className="text-zinc-500 hover:text-white transition-colors flex flex-col items-center gap-2 group"
+            >
+              {social.icon}
+              <span className="text-[10px] uppercase font-mono tracking-widest opacity-0 group-hover:opacity-100 absolute -top-8 transition-opacity">
+                {social.label}
+              </span>
+            </motion.a>
+          ))}
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12 text-zinc-600 font-mono text-xs uppercase tracking-widest">
+          <p>© {new Date().getFullYear()} Thanapoom Santhong</p>
+          <div className="hidden md:block w-1 h-1 bg-zinc-800 rounded-full" />
+          <p>ALL RIGHTS RESERVED</p>
+          <div className="hidden md:block w-1 h-1 bg-zinc-800 rounded-full" />
+          <p>DESIGNED IN NL</p>
+        </div>
       </div>
     </section>
   );
