@@ -22,7 +22,7 @@ export default function Navbar() {
     >
       <div className="flex items-center gap-2 font-mono text-sm tracking-widest uppercase">
         <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-        <span className="font-bold tracking-[0.2em]">Poom.dev_</span>
+        <img src="images/Poom_logo.png" alt="Poom Logo" className="w-30" />
       </div>
 
       {/* Desktop Links */}
@@ -45,9 +45,13 @@ export default function Navbar() {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        <button className="border border-white/20 rounded-full px-6 py-2 text-xs font-mono tracking-widest hover:bg-white hover:text-black transition-colors">
+        <a
+          href="/assets/Poom_resume.pdf"
+          download="Poom_resume.pdf"
+          className="border border-white/20 rounded-full px-6 py-2 text-xs font-mono tracking-widest hover:bg-white hover:text-black transition-colors"
+        >
           RESUME
-        </button>
+        </a>
       </div>
 
       {/* Mobile Toggle */}

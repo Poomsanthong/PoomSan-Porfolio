@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Poom's Portfolio",
   description: "Author Poom Santhong",
+  icons: {
+    icon: "/images/Poom_Logo.png",
+  },
 };
 
 export default function RootLayout({
