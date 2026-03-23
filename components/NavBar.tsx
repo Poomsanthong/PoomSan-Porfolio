@@ -2,9 +2,14 @@
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+
+type links = {
+  name: string;
+  num: string;
+};
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const links = [
+  const links: links[] = [
     { name: "Home", num: "00" },
     { name: "About", num: "01" },
     { name: "Expertise", num: "02" },
