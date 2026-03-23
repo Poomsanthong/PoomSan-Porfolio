@@ -1,5 +1,6 @@
 "use client";
 import { easeInOut, motion } from "framer-motion";
+import AnimatedBg from "@/components/AnimatedBg";
 
 export default function Hero() {
   const words = "THANAPOOM SANTHONG".split(" ");
@@ -11,7 +12,7 @@ export default function Hero() {
     >
       {/* background elements*/}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <motion.div
+        {/* <motion.div
           animate={{
             x: [0, 100, -50, 0],
             y: [0, -50, 50, 0],
@@ -27,9 +28,11 @@ export default function Hero() {
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           className="absolute -bottom-[20%] -left-[10%] w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-gradient-to-tr from-indigo-900/40 to-cyan-900/20 blur-[120px] rounded-full"
-        />
+        /> */}
+
+        <AnimatedBg blur={0} />
         {/* Fake 3D block */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 50, rotate: -15 }}
           animate={{ opacity: 0.8, y: 0, rotate: -5 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
@@ -40,7 +43,7 @@ export default function Hero() {
           animate={{ opacity: 0.6, y: 0, rotate: 10 }}
           transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
           className="hidden lg:block absolute bottom-[25%] right-[25%] w-[80px] h-[80px] bg-gradient-to-br from-orange-500/20 to-rose-500/10 border border-orange-500/20 rounded-lg shadow-2xl backdrop-blur-xl"
-        />
+        /> */}
       </div>
       {/* Subtitle*/}
       <div className="relative z-10 flex flex-col items-center justify-center text-center mt-auto md:mt-16 h-full w-full max-w7xl mx-auto">
@@ -58,6 +61,7 @@ export default function Hero() {
 
           <div className="w-12 h-[1px] bg-orange-500" />
         </motion.div>
+
         {/* Main Title */}
         <div className="flex flex-col items-center w-full">
           {words.map((word, i) => (
