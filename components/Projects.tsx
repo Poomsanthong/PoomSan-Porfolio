@@ -4,22 +4,21 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 export default function Projects() {
-  //todo - add pics to projects
   const projects = [
     {
       title: "Reservation System",
       category: "FullStack / UI / Dashboard / Database",
-      image: "",
+      image: "images/Reservation_pic.jpg",
     },
     {
       title: "Restaurant Landing Page",
       category: "React / UI",
-      image: "",
+      image: "images/Landing_page.png",
     },
     {
       title: "Apple Website Clone",
       category: "Three.js / Gsap / Vite / Zustand ",
-      image: "",
+      image: "images/Apple_pic.jpg",
     },
   ];
   return (
@@ -73,7 +72,6 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
-
   return (
     <motion.div
       ref={ref}
@@ -90,7 +88,6 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           alt={project.title}
           className="w-full h-[120%] object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 origin-center filter grayscale group-hover:grayscale-0"
         />
-
         {/* Overlay hover effect */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
           <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out absolute right-8">

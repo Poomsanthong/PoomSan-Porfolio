@@ -6,14 +6,14 @@ import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 const contactLinks = [
   {
     label: "Email",
-    value: "hello@poom.dev",
-    href: "mailto:hello@poom.dev",
+    value: "thanapoom.santhong10@gmail.com",
+    href: "#contact",
     icon: Mail,
   },
   {
     label: "Location",
-    value: "Based in Netherlands, available worldwide",
-    href: "#",
+    value: "Based in Netherlands",
+    href: "#contact",
     icon: MapPin,
   },
 ];
@@ -77,9 +77,6 @@ export default function Contact() {
                     <span className="text-lg font-medium leading-snug text-white">
                       {value}
                     </span>
-                    {href !== "#" && (
-                      <ArrowUpRight className="mt-1 text-zinc-500 transition-colors group-hover:text-orange-400" />
-                    )}
                   </div>
                 </a>
               ))}
@@ -87,7 +84,9 @@ export default function Contact() {
 
             <div className="mt-8 border-t border-zinc-800 pt-8">
               <a
-                href="mailto:hello@poom.dev"
+                href="https://mail.google.com/mail/?view=cm&to=thanapoom.santhong10@gmail.com&su=Frontend%20Project%20Inquiry&body=Hi%20Poom,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20frontend%20project.%20Please%20let%20me%20know%20when%20you%20are%20available.%0D%0A%0D%0AThanks!"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-full bg-orange-500 px-6 py-3 font-medium text-black transition-transform duration-300 hover:scale-[1.02]"
               >
                 Start a conversation
