@@ -1,46 +1,25 @@
 "use client";
-import { easeInOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import AnimatedBg from "@/components/AnimatedBg";
 
 export default function Hero() {
   const words = "THANAPOOM SANTHONG".split(" ");
 
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.2,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       id="home"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-neutral-950 px-6 sm:px-12 md:px-24 pt-24 pb-12"
     >
       {/* background elements*/}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{
-            x: [0, 100, -50, 0],
-            y: [0, -50, 50, 0],
-            rotate: [0, 45, -45, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[20%] right-[10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-gradient-to-tr from-orange-600/30 to-rose-600/10 blur-[100px] rounded-full"
-        />
-        <motion.div
-          animate={{
-            x: [0, -100, 50, 0],
-            y: [0, 100, -50, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-[20%] -left-[10%] w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-gradient-to-tr from-indigo-900/40 to-cyan-900/20 blur-[120px] rounded-full"
-        />
-        {/* Fake 3D block */}
-        <motion.div
-          initial={{ opacity: 0, y: 50, rotate: -15 }}
-          animate={{ opacity: 0.8, y: 0, rotate: -5 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="hidden lg:block absolute top-[25%] left-[20%] w-[120px] h-[120px] bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/5 rounded-xl shadow-2xl backdrop-blur-xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, y: -50, rotate: 15 }}
-          animate={{ opacity: 0.6, y: 0, rotate: 10 }}
-          transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
-          className="hidden lg:block absolute bottom-[25%] right-[25%] w-[80px] h-[80px] bg-gradient-to-br from-orange-500/20 to-rose-500/10 border border-orange-500/20 rounded-lg shadow-2xl backdrop-blur-xl"
-        />
+        <AnimatedBg blur={0} scale={1} opacity={1} />
       </div>
       {/* Subtitle*/}
       <div className="relative z-10 flex flex-col items-center justify-center text-center mt-auto md:mt-16 h-full w-full max-w7xl mx-auto">
@@ -58,6 +37,7 @@ export default function Hero() {
 
           <div className="w-12 h-[1px] bg-orange-500" />
         </motion.div>
+
         {/* Main Title */}
         <div className="flex flex-col items-center w-full">
           {words.map((word, i) => (
@@ -115,6 +95,8 @@ export default function Hero() {
           <span className="text-white font-medium"> Work</span>
         </div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 }
+
+//  still logo doesnt work properly find a way

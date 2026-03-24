@@ -3,22 +3,37 @@ import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+
+type Project = {
+  title: string;
+  category: string;
+  image: string;
+  website: string;
+  github: string;
+};
+
 export default function Projects() {
-  const projects = [
+  const projects: Project[] = [
     {
       title: "Reservation System",
       category: "FullStack / UI / Dashboard / Database",
       image: "images/Reservation_pic.jpg",
+      website: "https://bookflow.poomsan.site/",
+      github: "https://github.com/Poomsanthong/Reservation-System",
     },
     {
       title: "Restaurant Landing Page",
       category: "React / UI",
       image: "images/Landing_page.png",
+      website: "https://landing-page.poomsan.site/",
+      github: "https://github.com/Poomsanthong/Restaurant_Website",
     },
     {
       title: "Apple Website Clone",
       category: "Three.js / Gsap / Vite / Zustand ",
       image: "images/Apple_pic.jpg",
+      website: "https://apple.poomsan.site/",
+      github: "https://github.com/Poomsanthong/Apple-website",
     },
   ];
   return (
@@ -64,7 +79,7 @@ export default function Projects() {
   );
 }
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -88,10 +103,27 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           alt={project.title}
           className="w-full h-[120%] object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 origin-center filter grayscale group-hover:grayscale-0"
         />
-        {/* Overlay hover effect */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-          <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out absolute right-8">
-            <ArrowUpRight size={32} />
+        {/* when project is hovered  */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-8">
+          <div className="flex gap-3 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+            <a
+              href={project.website}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-mono uppercase tracking-wider text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white hover:text-black"
+            >
+              Website
+              <ArrowUpRight size={16} />
+            </a>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-5 py-3 text-sm font-mono uppercase tracking-wider text-white backdrop-blur-sm transition-colors duration-300 hover:border-orange-400 hover:bg-orange-400 hover:text-black"
+            >
+              GitHub
+              <ArrowUpRight size={16} />
+            </a>
           </div>
         </div>
       </div>
