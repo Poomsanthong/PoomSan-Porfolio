@@ -7,7 +7,7 @@ type links = {
   name: string;
   num: string;
 };
-export default function Navbar() {
+export default function Navbar({ loaded }: { loaded: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const links: links[] = [
     { name: "Home", num: "00" },
@@ -20,18 +20,38 @@ export default function Navbar() {
   return (
     // Main Navbar Container with animation
     <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial={false}
+      animate={{ opacity: loaded ? 1 : 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50 py-6 px-8 md:px-16 flex items-center justify-between mix-blend-difference text-white"
     >
       <div className="flex items-center gap-2 font-mono text-sm tracking-widest uppercase">
-        <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-        <img src="images/Poom_Logo.png" alt="Poom Logo" className="w-30" />
+        {loaded && (
+          <>
+            <motion.span
+              initial={false}
+              animate={{ opacity: loaded ? 1 : 0 }}
+              transition={{ duration: 0.2, delay: loaded ? 0.25 : 0 }}
+              className="w-3 h-3 rounded-full bg-orange-500 animate-pulse"
+            ></motion.span>
+            <motion.img
+              src="images/Poom_Logo.png"
+              alt="Poom Logo"
+              layoutId="poom-logo"
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              className="w-30 h-30 bg-black rounded"
+            />
+          </>
+        )}
       </div>
 
       {/* Desktop Links */}
-      <div className="hidden md:flex gap-12">
+      <motion.div
+        initial={false}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.2, delay: loaded ? 0.25 : 0 }}
+        className="hidden md:flex gap-12"
+      >
         {links.map((link, i) => (
           <motion.a
             key={i}
@@ -47,9 +67,14 @@ export default function Navbar() {
             </span>
           </motion.a>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="hidden md:flex items-center gap-4">
+      <motion.div
+        initial={false}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.2, delay: loaded ? 0.25 : 0 }}
+        className="hidden md:flex items-center gap-4"
+      >
         <a
           href="/assets/Poom_resume.pdf"
           download="Poom_resume.pdf"
@@ -57,12 +82,18 @@ export default function Navbar() {
         >
           RESUME
         </a>
-      </div>
+      </motion.div>
 
       {/* Mobile Toggle */}
-      <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
+      <motion.button
+        initial={false}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.2, delay: loaded ? 0.25 : 0 }}
+        className="md:hidden p-2"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      </motion.button>
 
       {/* Mobile Menu */}
       {isOpen && (
