@@ -104,13 +104,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           className="w-full h-[120%] object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 origin-center filter grayscale group-hover:grayscale-0"
         />
         {/* when project is hovered  */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-8">
-          <div className="flex gap-3 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+        <div className="absolute inset-0 flex items-end justify-between bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 opacity-100 transition-opacity duration-500 md:p-8 lg:opacity-0 lg:group-hover:opacity-100">
+          <div className="flex w-full flex-wrap gap-3 opacity-100 transition-all duration-500 ease-out lg:w-auto lg:translate-y-8 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
             <a
               href={project.website}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-mono uppercase tracking-wider text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white hover:text-black"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-mono uppercase tracking-wider text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white hover:text-black md:px-5 md:py-3 md:text-sm"
             >
               Website
               <ArrowUpRight size={16} />
@@ -119,7 +119,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               href={project.github}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-5 py-3 text-sm font-mono uppercase tracking-wider text-white backdrop-blur-sm transition-colors duration-300 hover:border-orange-400 hover:bg-orange-400 hover:text-black"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-4 py-2 text-xs font-mono uppercase tracking-wider text-white backdrop-blur-sm transition-colors duration-300 hover:border-orange-400 hover:bg-orange-400 hover:text-black md:px-5 md:py-3 md:text-sm"
             >
               GitHub
               <ArrowUpRight size={16} />

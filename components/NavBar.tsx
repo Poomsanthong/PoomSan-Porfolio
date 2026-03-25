@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
@@ -7,6 +7,50 @@ type links = {
   name: string;
   num: string;
 };
+
+const smoothEase = [0.16, 1, 0.3, 1] as const;
+const quickEase = [0.4, 0, 1, 1] as const;
+
+const mobileMenuVariants = {
+  closed: {
+    opacity: 0,
+    y: -12,
+    scale: 0.98,
+    transition: {
+      duration: 0.2,
+      ease: quickEase,
+      when: "afterChildren",
+      staggerChildren: 0.04,
+      staggerDirection: -1,
+    },
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.28,
+      ease: smoothEase,
+      when: "beforeChildren",
+      staggerChildren: 0.06,
+      delayChildren: 0.04,
+    },
+  },
+};
+
+const mobileItemVariants = {
+  closed: {
+    opacity: 0,
+    y: -8,
+    transition: { duration: 0.16, ease: quickEase },
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.24, ease: smoothEase },
+  },
+};
+
 export default function Navbar({ loaded }: { loaded: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const links: links[] = [
@@ -23,7 +67,11 @@ export default function Navbar({ loaded }: { loaded: boolean }) {
       initial={false}
       animate={{ opacity: loaded ? 1 : 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 py-6 px-8 md:px-16 flex items-center justify-between mix-blend-difference text-white"
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 text-white transition-colors md:px-16 ${
+        isOpen
+          ? "bg-zinc-950/96 backdrop-blur-xl md:bg-transparent md:backdrop-blur-0"
+          : "mix-blend-difference"
+      }`}
     >
       <div className="flex items-center gap-2 font-mono text-sm tracking-widest uppercase">
         {loaded && (
@@ -39,7 +87,7 @@ export default function Navbar({ loaded }: { loaded: boolean }) {
               alt="Poom Logo"
               layoutId="poom-logo"
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className="w-30 h-30 bg-black rounded"
+              className="w-30 h-30 rounded"
             />
           </>
         )}
@@ -96,27 +144,34 @@ export default function Navbar({ loaded }: { loaded: boolean }) {
       </motion.button>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="absolute top-full left-0 right-0 bg-zinc-950/95 backdrop-blur-md p-8 flex flex-col gap-6 md:hidden border-b border-white/10"
-        >
-          {links.map((link, i) => (
-            <a
-              key={i}
-              href={`#${link.name.toLowerCase()}`}
-              className="flex justify-between items-center text-xl"
-              onClick={() => setIsOpen(false)}
-            >
-              <span className="uppercase tracking-widest">{link.name}</span>
-              <span className="text-xs font-mono text-orange-500">
-                /{link.num}
-              </span>
-            </a>
-          ))}
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={mobileMenuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="absolute top-full left-0 right-0 border-b border-white/10 bg-zinc-950 p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl md:hidden"
+          >
+            <div className="flex flex-col gap-6">
+              {links.map((link, i) => (
+                <motion.a
+                  key={i}
+                  variants={mobileItemVariants}
+                  href={`#${link.name.toLowerCase()}`}
+                  className="flex items-center justify-between text-xl"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="uppercase tracking-widest">{link.name}</span>
+                  <span className="text-xs font-mono text-orange-500">
+                    /{link.num}
+                  </span>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
