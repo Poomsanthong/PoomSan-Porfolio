@@ -1,81 +1,75 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import AnimatedBg from "./AnimatedBg";
+import { useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
 export default function Loader({ onFinish }: { onFinish: () => void }) {
-  const [progress, setProgress] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((p) => {
-        if (p >= 100) {
-          clearInterval(interval);
+    const duration = prefersReducedMotion ? 500 : 1100;
+    const timeout = window.setTimeout(onFinish, duration);
 
-          setTimeout(() => {
-            onFinish();
-          }, 15);
-
-          return 100;
-        }
-
-        return p + 2;
-      });
-    }, 30);
-
-    return () => clearInterval(interval);
-  }, []);
+    return () => window.clearTimeout(timeout);
+  }, [onFinish, prefersReducedMotion]);
 
   return (
-    <motion.div className="fixed inset-0   flex flex-col items-center justify-center z-50 overflow-hidden">
-      {" "}
-      {/* BACKGROUND BLOBS */}
+    // Main loader container
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden">
+      {/* backgroud */}
       <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="absolute inset-0 bg-neutral-950 pointer-events-auto"
+        transition={{
+          duration: prefersReducedMotion ? 0.2 : 0.45,
+          ease: "easeOut",
+        }}
       >
-        <AnimatedBg blur={20} scale={1} opacity={1} />
+        <div className="absolute inset-0 bg-neutral-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.18),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.06),transparent_28%)]" />
       </motion.div>
-      {/* NAME Logo */}
+      {/* logo */}
       <motion.img
         src="/images/Poom_Logo.png"
         layoutId="poom-logo"
-        initial={{ opacity: 0, y: 40, scale: 0.9 }}
+        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="w-40 md:w-48 z-10"
-      />
-      <motion.div
-        exit={{
-          opacity: 0,
-          y: 20,
-          filter: "blur(10px)",
-        }}
         transition={{
-          duration: 0.3,
-          ease: "easeIn",
+          duration: prefersReducedMotion ? 0.2 : 0.45,
+          ease: [0.16, 1, 0.3, 1],
         }}
+        className="z-10 w-40 md:w-48"
+      />
+      {/* text ui */}
+      <motion.div
         className="flex flex-col items-center"
+        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          delay: prefersReducedMotion ? 0 : 0.02,
+          duration: prefersReducedMotion ? 0.2 : 0.45,
+          ease: "easeOut",
+        }}
       >
-        {/* PERCENT */}
-        <motion.div
-          className="mt-6 text-sm text-zinc-400 font-mono tracking-widest z-10"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          {progress}%
-        </motion.div>
+        <p className="z-10 mt-6 font-mono text-xs uppercase tracking-[0.35em] text-zinc-400">
+          Loading portfolio
+        </p>
 
-        {/* PROGRESS BAR */}
-        <div className="w-64 h-[2px] bg-white/10 mt-4 overflow-hidden z-10">
+        <div className="z-10 mt-4 h-[2px] w-64 overflow-hidden bg-white/10">
           <motion.div
-            className="h-full bg-orange-500"
-            animate={{ width: `${progress}%` }}
-            transition={{ ease: "easeOut" }}
+            className="h-full origin-left bg-orange-500"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{
+              duration: prefersReducedMotion ? 0.45 : 0.9,
+              ease: "easeOut",
+            }}
           />
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

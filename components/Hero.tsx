@@ -10,8 +10,8 @@ export default function Hero() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.8,
-        delay: 0.2,
+        duration: 0.45,
+        delay: 0.05,
         ease: [0.16, 1, 0.3, 1],
       }}
       id="home"
@@ -26,7 +26,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.45, delay: 0.1 }}
           className="mb-6 flex items-center justify-center gap-3 w-full"
         >
           <div className="w-12 h-[1px] bg-orange-500" />
@@ -46,8 +46,8 @@ export default function Hero() {
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.8,
-                delay: 0.3 + i * 0.2,
+                duration: 0.45,
+                delay: 0.15 + i * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[7vw] leading-none font-black tracking-tighter text-white uppercase drop-shadow-lg overflow-hidden  w-full text-center "
@@ -61,7 +61,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.45, delay: 0.35 }}
           className="mt-8 sm:mt-12 text-zinc-400 max-w-2xl text-sm md:text-base lg:text-lg font-light tracking-wide leading-relaxed px-4 mx-auto"
         >
           FRONTEND. DESIGN. PERFORMANCE. BUILT WITH MODERN WEB TECHNOLOGIES.
@@ -71,7 +71,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
+        transition={{ delay: 0.55, duration: 0.45 }}
         className="relative z-10 w-full flex justify-between items-end mt-auto pt-14"
       >
         <div className="hidden md:flex flex-col gap-2 opacity-50 font-mono text-[10px] tracking-widest uppercase">

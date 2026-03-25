@@ -2,7 +2,6 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Expertise from "@/components/Expertise";
 import Hero from "@/components/Hero";
-import Navbar from "@/components/NavBar";
 import Projects from "@/components/Projects";
 
 export default function Page() {
@@ -16,3 +15,4 @@ export default function Page() {
     </main>
   );
 }
+//todo make the web anitmation faster in all devices
