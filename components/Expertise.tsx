@@ -80,6 +80,7 @@ function SkillCard({
 
   return (
     <motion.div
+      id="expertise"
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}

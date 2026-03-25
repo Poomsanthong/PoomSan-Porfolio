@@ -61,6 +61,15 @@ export default function Navbar({ loaded }: { loaded: boolean }) {
     { name: "Contact", num: " 04" },
   ];
 
+  const handleSmoothScroll = (sectionId: string) => {
+    const target = document.getElementById(sectionId);
+
+    if (!target) return;
+
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    setIsOpen(false);
+  };
+
   return (
     // Main Navbar Container with animation
     <motion.nav
@@ -106,6 +115,10 @@ export default function Navbar({ loaded }: { loaded: boolean }) {
             href={`#${link.name.toLowerCase()}`}
             className="group flex flex-col items-center hover:opacity-100 opacity-60 transition-opacity"
             whileHover={{ y: -2 }}
+            onClick={(e) => {
+              e.preventDefault();
+              handleSmoothScroll(link.name.toLowerCase());
+            }}
           >
             <span className="text-[10px] font-mono tracking-widest text-zinc-400 group-hover:text-orange-400 transition-colors">
               {`// ${link.num}`}
@@ -160,7 +173,10 @@ export default function Navbar({ loaded }: { loaded: boolean }) {
                   variants={mobileItemVariants}
                   href={`#${link.name.toLowerCase()}`}
                   className="flex items-center justify-between text-xl"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSmoothScroll(link.name.toLowerCase());
+                  }}
                 >
                   <span className="uppercase tracking-widest">{link.name}</span>
                   <span className="text-xs font-mono text-orange-500">
