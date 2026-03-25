@@ -1,17 +1,32 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 import AnimatedBg from "@/components/AnimatedBg";
 
 export default function Hero() {
   const words = "THANAPOOM SANTHONG".split(" ");
+  const prefersReducedMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
+
+  const useLiteMotion = prefersReducedMotion || isMobile;
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 40 }}
+      initial={useLiteMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.45,
-        delay: 0.05,
+        duration: useLiteMotion ? 0.3 : 0.45,
+        delay: useLiteMotion ? 0 : 0.05,
         ease: [0.16, 1, 0.3, 1],
       }}
       id="home"
@@ -24,9 +39,12 @@ export default function Hero() {
       {/* Subtitle*/}
       <div className="relative z-10 flex flex-col items-center justify-center text-center mt-auto md:mt-16 h-full w-full max-w7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={useLiteMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.1 }}
+          transition={{
+            duration: useLiteMotion ? 0.25 : 0.45,
+            delay: useLiteMotion ? 0.05 : 0.1,
+          }}
           className="mb-6 flex items-center justify-center gap-3 w-full"
         >
           <div className="w-12 h-[1px] bg-orange-500" />
@@ -43,11 +61,11 @@ export default function Hero() {
           {words.map((word, i) => (
             <motion.h1
               key={i}
-              initial={{ opacity: 0, y: 100 }}
+              initial={useLiteMotion ? { opacity: 0 } : { opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.45,
-                delay: 0.15 + i * 0.1,
+                duration: useLiteMotion ? 0.25 : 0.45,
+                delay: useLiteMotion ? 0.08 : 0.15 + i * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[7vw] leading-none font-black tracking-tighter text-white uppercase drop-shadow-lg overflow-hidden  w-full text-center "
@@ -59,9 +77,12 @@ export default function Hero() {
 
         {/* Small Description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={useLiteMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.35 }}
+          transition={{
+            duration: useLiteMotion ? 0.25 : 0.45,
+            delay: useLiteMotion ? 0.12 : 0.35,
+          }}
           className="mt-8 sm:mt-12 text-zinc-400 max-w-2xl text-sm md:text-base lg:text-lg font-light tracking-wide leading-relaxed px-4 mx-auto"
         >
           FRONTEND. DESIGN. PERFORMANCE. BUILT WITH MODERN WEB TECHNOLOGIES.
@@ -71,7 +92,10 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.55, duration: 0.45 }}
+        transition={{
+          delay: useLiteMotion ? 0.18 : 0.55,
+          duration: useLiteMotion ? 0.25 : 0.45,
+        }}
         className="relative z-10 w-full flex justify-between items-end mt-auto pt-14"
       >
         <div className="hidden md:flex flex-col gap-2 opacity-50 font-mono text-[10px] tracking-widest uppercase">
@@ -80,8 +104,12 @@ export default function Hero() {
         </div>
 
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          animate={useLiteMotion ? undefined : { y: [0, 10, 0] }}
+          transition={
+            useLiteMotion
+              ? undefined
+              : { repeat: Infinity, duration: 2, ease: "easeInOut" }
+          }
           className="mx-auto md:mx-0 flex flex-col items-center gap-4 cursor-pointer"
         >
           <span className="text-[10px] uppercase tracking-widest font-mono text-zinc-500">
