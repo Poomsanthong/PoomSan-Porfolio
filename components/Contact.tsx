@@ -8,7 +8,6 @@ const contactLinks = [
     label: "Email",
     value: "thanapoom.santhong10@gmail.com",
     href: "#contact",
-
     icon: Mail,
   },
   {
@@ -23,7 +22,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative pt-32 pb-16 px-8 md:px-16 bg-[#020202] text-white min-h-[90vh] flex flex-col justify-between overflow-hidden"
+      className="relative min-h-[90vh] overflow-hidden bg-[#020202] px-8 pt-32 pb-16 text-white md:px-16"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_30%)]" />
 
@@ -45,11 +44,11 @@ export default function Contact() {
             Contact
           </p>
           <h2 className="text-4xl font-black uppercase tracking-tighter md:text-6xl">
-            Let's build something sharp.
+            Let&apos;s build something sharp.
           </h2>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
             If you need a frontend developer for product work, polished UI, or
-            interactive experiences, let's talk through the details.
+            interactive experiences, let&apos;s talk through the details.
           </p>
         </motion.div>
 
@@ -98,8 +97,7 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      {/* Footer Details */}
-      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center gap-8 mt-32 border-t border-zinc-900 pt-8 relative z-10">
+      <div className="relative z-10 mx-auto mt-32 flex max-w-7xl flex-col items-center justify-between gap-8 border-t border-zinc-900 pt-8 md:flex-row">
         <div className="flex items-center gap-8">
           {[
             {
@@ -126,21 +124,21 @@ export default function Contact() {
               whileHover={{ y: -5, color: "#f97316" }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: i * 0.1 }}
-              className="text-zinc-500 hover:text-white transition-colors flex flex-col items-center gap-2 group"
+              className="group flex flex-col items-center gap-2 text-zinc-500 transition-colors hover:text-white"
             >
               {social.icon}
-              <span className="text-[10px] uppercase font-mono tracking-widest opacity-0 group-hover:opacity-100 absolute -top-8 transition-opacity">
+              <span className="absolute -top-8 text-[10px] font-mono uppercase tracking-widest opacity-0 transition-opacity group-hover:opacity-100">
                 {social.label}
               </span>
             </motion.a>
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12 text-zinc-600 font-mono text-xs uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} Thanapoom Santhong</p>
-          <div className="hidden md:block w-1 h-1 bg-zinc-800 rounded-full" />
+        <div className="flex flex-col items-center gap-4 font-mono text-xs uppercase tracking-widest text-zinc-600 md:flex-row md:gap-12">
+          <p>&copy; {new Date().getFullYear()} Thanapoom Santhong</p>
+          <div className="hidden h-1 w-1 rounded-full bg-zinc-800 md:block" />
           <p>ALL RIGHTS RESERVED</p>
-          <div className="hidden md:block w-1 h-1 bg-zinc-800 rounded-full" />
+          <div className="hidden h-1 w-1 rounded-full bg-zinc-800 md:block" />
           <p>DESIGNED IN NL</p>
         </div>
       </div>

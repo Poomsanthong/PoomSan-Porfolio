@@ -60,7 +60,7 @@ export default function Navbar({ loaded }: { loaded: boolean }) {
             whileHover={{ y: -2 }}
           >
             <span className="text-[10px] font-mono tracking-widest text-zinc-400 group-hover:text-orange-400 transition-colors">
-              // {link.num}
+              {`// ${link.num}`}
             </span>
             <span className="text-sm tracking-widest uppercase mt-1">
               {link.name}
