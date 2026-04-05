@@ -18,7 +18,7 @@ export default function Projects() {
       title: "Reservation System",
       category: "FullStack / UI / Dashboard / Database",
       image: "images/Reservation_pic.jpg",
-      website: "https://bookflow.poomsan.site/",
+      website: "https://bookflow.poomsan.site/landingPage",
       github: "https://github.com/Poomsanthong/Reservation-System",
     },
     {
